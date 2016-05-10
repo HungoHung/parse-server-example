@@ -12,11 +12,20 @@ if (!databaseUri) {
 }
 
 var api = new ParseServer({
-  databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
+  databaseURI: databaseUri || 'mongodb://heroku_bh8crr6t:ri6ll8es1o1c3f5imct4tp78vu@ds039165.mlab.com:39165/heroku_bh8crr6t',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
-  appId: process.env.APP_ID || 'myAppId',
-  masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
-  serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
+  appId: process.env.APP_ID || 'arcane-fjord-20523',
+  masterKey: process.env.MASTER_KEY || 'arcane-fjord-205233', //Add your master key here. Keep it secret!
+  serverURL: process.env.SERVER_URL || 'https://arcane-fjord-20523.herokuapp.com/parse',  // Don't forget to change to https if needed
+  push: {
+  ios: [
+    {
+      pfx: 'MapMarkCertificates.p12',
+      bundleId: 'com.yuchenghung.MapLocationTest-MarkPrice',
+      production: false
+    }
+  ]
+  },
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
   }
